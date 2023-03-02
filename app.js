@@ -58,7 +58,11 @@ app.get('/create', async (req, res) => {
   await collection.insertOne({ 
     game: game_input
 })
-
+.then(result => {
+  console.log(result); 
+  res.redirect('/');
+})
+  
 })
 
 //READ

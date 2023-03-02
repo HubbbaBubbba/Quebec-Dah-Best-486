@@ -1,16 +1,16 @@
-<h3> Current Animal on hand</h3> 
- <% for (var i=0; i< animalData.length; i++ ) { %>
-  <form method="POST" action="/deleteAnimal/<%= animalData[i]._id %>" style="display: inline-block">  
-    <%= animalData[i].animal %> (<%= animalData[i].size %>) 
+<h3> Current Game Library</h3> 
+ <% for (var i=0; i< gameData.length; i++ ) { %>
+  <form method="POST" action="/deleteGame/<%= gameData[i]._id %>" style="display: inline-block">  
+    <%= gameData[i].game %> (<%= gameData[i].size %>) 
     <input type="submit" value="delete"> 
   </form>
   <br/>
 <% } %> 
 
-<h3> Update a animal</h3> 
- <% for (var i=0; i< animalData.length; i++ ) { %>
-  <form method="POST" action="/updateAnimal/<%= animalData[i]._id %>" style="display: inline-block">  
-    <%= animalData[i].animal %> (<%= animalData[i].size %>) 
+<h3> Update your Game </h3> 
+ <% for (var i=0; i< gameData.length; i++ ) { %>
+  <form method="POST" action="/updateGame/<%= gameData[i]._id %>" style="display: inline-block">  
+    <%= gameData[i].game %> (<%= gameData[i].size %>) 
     <input type="submit" value="update"> 
   </form>
   <br/>
@@ -18,7 +18,7 @@
 <!-- update our db -->
 
 <form method="get" action="/create">
-    <p>Give an animal name</p>
+    <p>What's your favorite game!</p>
     <input type="text" name="ejsFormName" value=""> 
     <input type="submit">
   </form>

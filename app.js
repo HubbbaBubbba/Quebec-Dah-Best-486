@@ -18,7 +18,7 @@ async function cxnDB(){
 
   try{
     client.connect; 
-    const collection = client.db("CIS486POWERTRAIN").collection("animal_name");
+    const collection = client.db("QuebecCISGameTime").collection("fav_game");
     // const collection = client.db("papa").collection("dev-profiles");
     const result = await collection.find().toArray();
     //const result = await collection.findOne(); 
@@ -40,7 +40,7 @@ app.get('/', async (req, res) => {
 
   // console.log("get/: ", result);
 
-  res.render('index', {  animalData : result })
+  res.render('index', {  gameData : result })
 })
 
 //CREATE
@@ -50,13 +50,13 @@ app.get('/create', async (req, res) => {
   //get data from the form 
 
   console.log("in get to slash update:", req.query.ejsFormName); 
-  animal_input = req.query.ejsFormName; 
+  game_input = req.query.ejsFormName; 
 
   //update in the database. 
   client.connect; 
-  const collection = client.db("CIS486POWERTRAIN").collection("animal_name");
+  const collection = client.db("QuebecCISGameTime").collection("fav_game");
   await collection.insertOne({ 
-    animal: animal_input
+    game: game_input
 })
 
 })
@@ -77,15 +77,15 @@ app.get('/mongo', async (req, res) => {
 
 //UPDATE
 
-app.post('/updateAnimal/:id', async (req, res) => {
+app.post('/updateGame/:id', async (req, res) => {
 
   try {
     console.log("req.parms.id: ", req.params.id) 
     
     client.connect; 
-    const collection = client.db("CIS486POWERTRAIN").collection("animal_name");
+    const collection = client.db("QuebecCISGameTime").collection("fav_game");
     let result = await collection.findOneAndUpdate(
-      {"_id": new ObjectId(req.params.id)}, {$set:{animal : "NewAnimal"}})
+      {"_id": new ObjectId(req.params.id)}, {$set:{game : "Halo"}})
     .then(result => {
       console.log(result); 
       res.redirect('/');
@@ -100,15 +100,15 @@ app.post('/updateAnimal/:id', async (req, res) => {
 
 // DELETE
 
-app.post('/deleteAnimal/:id', async (req, res) => {
+app.post('/deleteGame/:id', async (req, res) => {
 
   try {
     console.log("req.parms.id: ", req.params.id) 
     
     client.connect; 
-    const collection = client.db("CIS486POWERTRAIN").collection("animal_name");
+    const collection = client.db("QuebecCISGameTime").collection("fav_game");
     let result = await collection.findOneAndDelete( 
-      {"_id": new ObjectId(req.params.id)}, {$set:{animal : ""}})
+      {"_id": new ObjectId(req.params.id)}, {$set:{game : ""}})
     
     .then(result => {
       console.log(result); 
